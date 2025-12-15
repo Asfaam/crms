@@ -80,17 +80,17 @@ crms/
 ├── staff/                # Resource manager approval dashboards and actions
 ├── admin/                # Admin dashboards and  add, edit & delete actions
 │
-├── functions/            # Contains a function file that automates the system
+├── functions/            # Contains a function file (automate.php) that automates the system to determine when an event (approved requests) starts (by event date, event time) and completes
 ├── login/                # Register, login and logout files
 ├── logs/                 # PHP and system error logs
 ├── css/                  # Contains css files for web pages look and feel
-├── db/                   # Contains the MySQL database file (crms.sql) of the we application
+├── db/                   # Contains the MySQL database file (crms.sql) of the web application
 │
 ├── images/               # Contains images in the web application
 ├── settings/             # Shared backend logic (DB connection, helper functions)
 ├── logs/                 # Server-level configuration
 ├── index.php             # Application entry point
-└── README.md             # Project documentation
+└── readme.md             # Project documentation
 ```
 
 ---
