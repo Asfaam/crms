@@ -3,17 +3,17 @@
 ## Overview
 The **Campus Resource Management System (CRMS)** is a web-based application designed to manage **institutional resource booking workflows** within a university or campus environment. The system provides a centralized platform for **students** to request shared resources and for **resource managers** to review, approve, or reject those requests efficiently.
 
-CRMS focuses specifically on **resource allocation, approval workflows, and automated notifications**, eliminating the need for manual emails, paper forms, or informal communication channels.
+CRMS focuses specifically on **resource allocation, approval workflows**, eliminating the need for paper forms, or informal communication channels.
 
 ---
 
 ## Problem Statement
-In many campus environments, shared resources (such as rooms, equipment, or facilities) are managed manually through emails, spreadsheets, or verbal approvals. This often results in:
+In many campus environments, shared resources (such as rooms, equipment, or facilities) are managed manually through paper forms, online forms, or verbal approvals. This often results in:
 
 - Lost or untracked booking requests
 - Delayed approval decisions
 - Lack of transparency for students
-- No centralized record of approved or rejected bookings
+- No centralized record of approved or denied bookings
 
 CRMS solves these issues by introducing a **structured, role-based digital system** for managing campus resources.
 
@@ -26,39 +26,29 @@ CRMS implements strict role-based access control to ensure that users only inter
 
 - **Students**
   - Submit resource booking requests
-  - View booking status (Pending, Approved, Rejected)
-  - Receive email notifications on request decisions
+  - View booking status (Pending, Approved, Denied)
 
 - **Resource Managers**
   - View all incoming booking requests
-  - Approve or reject requests
-  - Trigger automated email responses
+  - Approve or deny requests
 
 - **Administrators** (optional extension)
-  - Manage system users
+  - Manage system users, resources and resource managers
   - Configure system settings
 
 ---
 
 ### 2. Resource Booking Workflow
 - Students submit booking requests with required details
-- Requests are stored in the database with a default `Pending` status
+- Requests are stored in the database with a default `Pending` and `Uncompleted` status
 - Resource managers review requests from a dedicated dashboard
-- Each request can be approved or rejected with a single action
+- Each request can be approved or denied with a single action
 
 ---
 
 ### 3. Approval & Rejection Handling
-- Approved or rejected requests update instantly in the system
-- Decision status is persisted for audit and tracking purposes
-- Managers can optionally include remarks or reasons
+- Approved or denied requests update instantly in the system
 
----
-
-### 4. Automated Email Notifications
-- Email notifications are sent automatically upon request approval or rejection
-- Emails use a **No Reply** sender identity
-- Email content is dynamically generated (student name, resource name, decision status)
 
 ---
 
@@ -77,7 +67,7 @@ CRMS follows a **modular PHP-based architecture**:
 
 - **Database**
   - MySQL
-  - Relational schema for users, resources, and bookings
+  - Relational schema for users, resources, resource managers, and bookings
 
 ---
 
@@ -87,15 +77,18 @@ CRMS follows a **modular PHP-based architecture**:
 crms/
 │
 ├── student/              # Student booking views and logic
-├── resource_manager/     # Approval dashboards and actions
+├── staff/                # Resource manager approval dashboards and actions
+├── admin/                # Admin dashboards and  add, edit & delete actions
 │
-├── includes/             # Shared backend logic (DB connection, helpers)
-├── layout/               # Reusable UI components (header, sidebar)
+├── functions/            # Contains a function file that automates the system
+├── login/                # Register, login and logout files
 ├── logs/                 # PHP and system error logs
+├── css/                  # Contains css files for web pages look and feel
+├── db/                   # Contains the MySQL database file (crms.sql) of the we application
 │
-├── assets/               # CSS, JS, images
-├── config/               # Configuration and environment files
-├── .htaccess             # Server-level configuration
+├── images/               # Contains images in the web application
+├── settings/             # Shared backend logic (DB connection, helper functions)
+├── logs/                 # Server-level configuration
 ├── index.php             # Application entry point
 └── README.md             # Project documentation
 ```
@@ -104,13 +97,12 @@ crms/
 
 ## Database Design
 
-The database is centered around the following core entities:
+The database is centered around the following core tables:
 
-- Users
-- Roles
-- Resources
-- Booking Requests
-- Booking Status History
+- users
+- resources
+- resmanagers
+- bookings 
 
 Each booking request maintains a lifecycle from submission to final decision.
 
@@ -134,7 +126,7 @@ Each booking request maintains a lifecycle from submission to final decision.
 4. Configure database credentials in the config directory
 5. Ensure the `/logs` directory is writable
 6. Start Apache and MySQL services
-7. Access the system through your browser
+7. Access the system through your browser (e.g., `localhost/crms`)
 
 ---
 
@@ -144,6 +136,7 @@ Each booking request maintains a lifecycle from submission to final decision.
 - File uploads for booking justification
 - Multi-level approval workflows
 - REST API for mobile integration
+- Automated email upon booking request approval, cancellation and completion
 - Advanced reporting and analytics
 
 ---
@@ -162,7 +155,7 @@ CRMS was developed as a **computer science academic project**, with emphasis on:
 ## Author
 
 **CRMS Project Developer**  
-Computer Science Student
+Kingsford Ammisah
 
 ---
 
