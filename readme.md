@@ -70,7 +70,7 @@ CRMS follows a **modular PHP-based architecture**:
   - Relational schema for users, resources, resource managers, and bookings
 
 - **Link to live server**
-  - <a href="http://crms-for-students.wuaze.com" target="_blank" rel="noopener noreferrer">crms-for-students.wuaze.com</a>
+  - [crms-for-students.wuaze.com ↗](http://crms-for-students.wuaze.com)
 ---
 
 ## Project Structure
